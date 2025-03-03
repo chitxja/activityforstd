@@ -24,13 +24,13 @@ if (isset($_SESSION['student_id'])) {
         <div class="container-fluid  d-flex ">
             <h1>ระบบลงกิจกรรม</h1>
             <ul class="navbar-nav me-3">
+                <li class="nav-item d-flex  align-items-center">
+                    <a class="nav-link  " href="/">หน้าแรก</a>
+                </li>
                 <?php
                 if (isset($_SESSION['timestamp'])) {
                     if ($resultid['role'] === 'user') { ?>
                         <div class="d-flex justify-content-end ">
-                            <li class="nav-item d-flex  align-items-center">
-                                <a class="nav-link  " href="/">หน้าแรก</a>
-                            </li>
                             <li class="nav-item d-flex  align-items-center">
                                 <a class="nav-link" href="/courses">กิจกรรมทั้งหมด
                                     <span class="badge rounded-pill bg-danger">New</span></a>

@@ -1,37 +1,49 @@
-<?php
-$activity = $data['activity'];
-$dataid = $data['result']['std_id'];
-?>
-<div class="container">
-<h2 class="mt-3">รายวิชาที่เปิดให้ลงทะเบียน</h2>
-<table border="1" class="table mt-3">
-    <thead>
-        <tr>
-            <th>ชื่อกิจกรรม</th>
-            <th class="text-center">จัดการข้อมูล</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($activity as $a): ?>
-            <tr>
-            
-                <td><?= $a['title'] ?></td>
-                <!-- <td><?= $a[''] ?></td>
-             s   <td><?= $a['instructor'] ?></td> -->
-                <td class="d-flex justify-content-center aling-items-center">
-                    <form action="/enroll" method="get" onsubmit="return confirmmisstion()">
-                        <input type="hidden" name="student_id" value="<?= $dataid ?>">
-                        <input type="hidden" name="course_id" value="<?= $course['course_id'] ?>">
-                        <input type="submit" class="btn btn-info text-light " value="ลงทะเบียน">
-                    </form>
-                    </td>
-            </tr>
-        <?php endforeach; ?>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
-    </tbody>
-</table>
+<div class="text-center">
+    <h1>รายการกิจกรรม</h1>
 </div>
-<script>
-    function confirmmisstion(){
-        return confirm("คุณต้องการเพิ่มรายวิชาใหม่เข้าระบบใช่ไหม?");
-    }
-</script>
+<div class="d-flex justify-content-center">
+    <div class="row container">
+        <?php
+        foreach ($data['activity'] as $a) {
+
+            if ($a['status'] === "ปิดรับแล้ว") {
+                continue; 
+            }
+
+            $date = new DateTime($a['activity_date']);
+            $formatted_date = $date->format('d-m-Y'); ?>
+            <section class="col-4 mb-1 ">
+                <div class="border  rounded-4 overflow-hidden ">
+                    <section>
+                        <img src="<?= $a['image'] ?>" alt="" style="width: 100%; height: 200px; object-fit: cover;">
+                    </section>
+                    <div class="container">
+                        <section class="text-center">
+                            <strong>โครงการ<?= $a['title'] ?></strong>
+                        </section>
+                        <section><strong>วันที่ </strong><?= $formatted_date  ?></section>
+                        <section><strong>สถานที่ </strong><?= $a['location'] ?></section>
+                        <section><strong>ชั่วโมงกิจกรรม</strong> <?= $a['time'] ?> ชั่วโมง</section>
+                        <section><strong>รับสมัคร</strong> <?= $a['enrollment'] ?></section>
+                        <div class="d-flex justify-content-between mb-3">
+                            <section class=" text-center mt-2"><strong><?= $a['status'] ?></strong></section>
+                            <section class="">
+                                <form action="activity" method="get">
+                                    <input name="activity_id" type="hidden" value="<?= $a['activity_id'] ?>">
+                                    <input class="btn btn-primary " type="submit" value="รายละเอียด">
+                                </form>
+                            </section>
+
+                        </div>
+                    </div>
+
+            </section>
+        <?php } ?>
+    </div>
+</div>
+</div>
+
+
+
+
+

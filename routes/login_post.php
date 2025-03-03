@@ -7,7 +7,7 @@ if ($result) {
     $_SESSION['timestamp'] = $unix_timestamp;
     $_SESSION['student_id'] = $result['user_id'];
     $activity = getActivity();
-    $id = $result['role'];
+    // $id = $result['role'];
     $_SESSION['user'] = $result['role'];
     
     if ($id === 'admin') {
