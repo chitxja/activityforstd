@@ -24,9 +24,6 @@ if (isset($_SESSION['student_id'])) {
         <div class="container-fluid  d-flex ">
             <h1>ระบบลงกิจกรรม</h1>
             <ul class="navbar-nav me-3">
-                <li class="nav-item d-flex  align-items-center">
-                    <a class="nav-link  " href="/">หน้าแรก</a>
-                </li>
                 <?php
                 if (isset($_SESSION['timestamp'])) {
                     if ($resultid['role'] === 'user') { ?>
@@ -38,7 +35,7 @@ if (isset($_SESSION['student_id'])) {
                         <?php } elseif ($resultid['role'] === 'admin') { ?>
                             <li class="nav-item d-flex  align-items-center">
                                 <a class="nav-link" href="/admin">
-                                    <span>หน้าแรก</span>
+                                    <span>กิจกรรมของคุณ</span>
                                 </a>
                             </li>
                             <li class="nav-item d-flex  align-items-center">
@@ -57,7 +54,7 @@ if (isset($_SESSION['student_id'])) {
                                     <a class="nav-link" href="/profile">ข้อมูลนักเรียน</a>
                                 <?php } elseif ($resultid['role'] === 'admin') { ?>
                                     <a class="nav-link" href="/profile">ข้อมูลผู้สร้างกิจกรรม</a>
-                                    <a class="nav-link" href="/admin">กิจกรรมของคุณ</a>
+                                    <!-- <a class="nav-link" href="/admin">กิจกรรมของคุณ</a> -->
                                 <?php } ?>
                                 <a class="nav-link" href="/logout">ออกจากระบบ</a>
                             </ul>
@@ -65,6 +62,9 @@ if (isset($_SESSION['student_id'])) {
                     <?php
                 } else {
                     ?>
+                        <li class="nav-item d-flex  align-items-center">
+                            <a class="nav-link  " href="/">หน้าแรก</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/login">เข้าสู่ระบบ</a>
                         </li>

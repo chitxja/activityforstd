@@ -1,3 +1,4 @@
+<?php if($_ses)?>
 <section class="container">
     <h2 class="mt-3 mb-3">ข้อมูลนักเรียน</h2>
     <div class="row ">
@@ -28,6 +29,7 @@
                 </table>
             </div>
         </div>
+
         <h2 class="mt-3 mb-3">กิจกรรมที่ลงทะเบียนแล้ว</h2>
         <table border="1" class="table">
             <thead>

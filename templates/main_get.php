@@ -4,12 +4,18 @@
 <div class="d-flex justify-content-center">
     <div class="row container">
         <?php
+        $sum = $data['sum_member'];
         foreach ($data['activity'] as $a) {
 
             if ($a['status'] === "ปิดรับแล้ว") {
                 continue; 
             }
-
+            foreach ($sum as $s) {
+                if ($s['activity_id'] == $a['activity_id']) {
+                    $total_join = $s['total_join'];
+                    break;
+                }
+            }
             $date = new DateTime($a['activity_date']);
             $formatted_date = $date->format('d-m-Y'); ?>
             <section class="col-4 mb-1 ">
@@ -25,6 +31,7 @@
                         <section><strong>สถานที่ </strong><?= $a['location'] ?></section>
                         <section><strong>ชั่วโมงกิจกรรม</strong> <?= $a['time'] ?> ชั่วโมง</section>
                         <section><strong>รับสมัคร</strong> <?= $a['enrollment'] ?></section>
+                        <section><strong>จำนวนคนที่สมัครแล้ว</strong> <?= $total_join ?>คน</section>
                         <div class="d-flex justify-content-between mb-3">
                             <section class=" text-center mt-2"><strong><?= $a['status'] ?></strong></section>
                             <section class="">

@@ -7,13 +7,14 @@ if ($result) {
     $_SESSION['timestamp'] = $unix_timestamp;
     $_SESSION['student_id'] = $result['user_id'];
     $activity = getActivity();
-    // $id = $result['role'];
+    $id = $result['role'];
     $_SESSION['user'] = $result['role'];
+    $sum = getsummember();
     
     if ($id === 'admin') {
-        renderView('admin_get', ['activity' => $activity, $result]);
+        renderView('admin_get', ['activity' => $activity, $result, 'sum_member' => $sum]);
     }else {
-        renderView('main_get', ['activity' => $activity, $result]);
+        renderView('main_get', ['activity' => $activity, $result, 'sum_member' => $sum]);
     }
 } else {
     $_SESSION['message'] = 'Email or Password invalid';
