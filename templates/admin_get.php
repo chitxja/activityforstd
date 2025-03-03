@@ -25,9 +25,9 @@
                 $activity = $data['activity'] ?? []; // กำหนดค่าเริ่มต้นให้เป็น array
                 $sum = $data['sum_member'] ?? []; 
                 $sum = getsummember();
-echo "<pre>";
-print_r($sum);
-echo "</pre>";
+// echo "<pre>";
+// print_r($sum);
+// echo "</pre>";
 
 
                 if (is_array($activity) && !empty($activity)): ?>
@@ -45,7 +45,7 @@ echo "</pre>";
                     ?>
                         <tr>
                             <td><?= htmlspecialchars($a['title'] ?? 'ไม่มีชื่อกิจกรรม') ?></td>
-                            <td><?= htmlspecialchars((string) $total_join) ?></td>
+                            <td><?= htmlspecialchars((string) $total_join) ?> / <?= $a['member']?></td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>

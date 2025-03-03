@@ -8,7 +8,8 @@ if (!isset($_GET['stdid'])||!isset($_GET['activity_id'])) {
     if ($res) {
         header('Location: /profile');
     }else{
-        echo "<script>alert('วิชานี้ลงทะเบียนแล้ว');window.location.href = '/activity';</script>";
+        echo "<script>alert('นิสิตเคยลงกิจกรรมนี้แล้ว');window.location.href = '/courses';</script>";
+        // header('Location: /courses');
         exit;
 
     }

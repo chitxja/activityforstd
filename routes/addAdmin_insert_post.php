@@ -16,10 +16,12 @@ if (!isset($_POST['adminid'])) {
     // $res = getactivitybyid($id);
     if ($result) {
         echo "<script>alert('สร้างกิจกรรมสำเร็จ');</script>";
-        renderView('create_activity_get', ['stdid' => $resultid]);
+        // renderView('admin_get', ['stdid' => $resultid]);
+        header('Location: /admin');
     } else {
         echo "<script>alert('คุณเคยสร้างกิจกรรมนี้แล้ว');</script>";
-        renderView('addAdmin_get');
+        // renderView('addAdmin_get');
+        header('Location: /addAdmin');
         exit(); 
     }
 }

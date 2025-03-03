@@ -1,4 +1,46 @@
-<?php if($_ses)?>
+<?php 
+if (!isset($_SESSION['student_id'])) {
+    header('Location: /');
+    exit();
+}else {
+if ($_SESSION['user'] == 'admin') {?>
+    <section class="container">
+        <h2 class="mt-3 mb-3">ข้อมูลผู้สร้างกิจกรรม</h2>
+        <div class="row ">
+            <div class="border rounded-4 row d-flex justify-content-center container ">
+                <div class="col-3 mt-3 mb-3 me-3">
+                    <div class="d-flex justify-content-center ">
+                        <img class="rounded w-100"  src="<?= $data['result']['image'] ?>" alt="">
+                    </div>
+                </div>
+                <div class="col-7 mt-3 mb-3 ">
+                    <table border="1" class="table">
+                        <tr>
+                            <th>ชื่อ</th>
+                            <td><?= $data['result']['first_name'] ?></td>
+                        </tr>
+                        <tr>
+                            <th>นามสกุล</th>
+                            <td><?= $data['result']['lastname'] ?></td>
+                        </tr>
+                        <tr>
+                            <th>อีเมล</th>
+                            <td><?= $data['result']['email'] ?></td>
+                        </tr>
+                        <tr>
+                            <th>สถานะ</th>
+                            <td><?= $data['result']['role'] ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<?php }else{ ?>
+    
+
 <section class="container">
     <h2 class="mt-3 mb-3">ข้อมูลนักเรียน</h2>
     <div class="row ">
@@ -60,8 +102,4 @@
         </table>
     </div>
 </section>
-<script>
-    function confirmSubmisstion() {
-        return confirm("คุณแน่ใจหรอว่าจะถอนรายวิชานี้?");
-    }
-</script>
+            <?php }} ?>
