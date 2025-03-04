@@ -8,18 +8,13 @@ if ($result) {
     $_SESSION['student_id'] = $result['user_id'];
     $activity = getActivity();
     // $id = $result['role'];
-    $_SESSION['user'] = $result['role'];
+    // $_SESSION['user'] = $result['role'];
     $sum = getsummember();
     $getid = getStudentById($_SESSION['student_id']);
     $activity = getAdminCreateActivitybyid($_SESSION['student_id']);
     $std_join = getjoinactivity($_SESSION['student_id']);
     
-    if ($result['role'] === 'admin') {
-        renderView('admin_get',['activity' => $activity , 'join_activity' => $std_join ,'sum_member' => $sum]);
-        // renderView('admin_get', ['activity' => $activity, $result,'result' => $getid]);
-    }else {
-        renderView('main_get', ['activity' => $activity, $result, 'sum_member' => $sum]);
-    }
+        renderView('profile_get', ['activity' => $activity, $result,'join_activity' => $std_join , 'result' => $getid]);
 } else {
     $_SESSION['message'] = 'Email or Password invalid';
     renderView('login_get');

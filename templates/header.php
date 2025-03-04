@@ -25,14 +25,12 @@ if (isset($_SESSION['student_id'])) {
             <h1>ระบบลงกิจกรรม</h1>
             <ul class="navbar-nav me-3">
                 <?php
-                if (isset($_SESSION['timestamp'])) {
-                    if ($resultid['role'] === 'user') { ?>
+                if (isset($_SESSION['timestamp'])) {?>
                         <div class="d-flex justify-content-end ">
                             <li class="nav-item d-flex  align-items-center">
                                 <a class="nav-link" href="/courses">กิจกรรมทั้งหมด
                                     <span class="badge rounded-pill bg-danger">New</span></a>
                             </li>
-                        <?php } elseif ($resultid['role'] === 'admin') { ?>
                             <li class="nav-item d-flex  align-items-center">
                                 <a class="nav-link" href="/admin">
                                     <span>กิจกรรมของคุณ</span>
@@ -43,19 +41,13 @@ if (isset($_SESSION['student_id'])) {
                                     <span>เพิ่มกิจกรรม</span>
                                 </a>
                             </li>
-                        <?php } ?>
                         <div class="dropdown  d-flex  ">
                             <a class="navbar-brand d-flex  align-items-center nav-link" href="#" data-bs-toggle="dropdown">
                                 <img src="<?= $image ?>" alt="Logo" style="width:40px;" class="rounded-pill align-self-start  ">
                                 <?php echo $n . " " . $ln; ?>
                             </a>
                             <ul class="dropdown-menu">
-                                <?php if ($resultid['role'] === 'user') { ?>
                                     <a class="nav-link" href="/profile">ข้อมูลนักเรียน</a>
-                                <?php } elseif ($resultid['role'] === 'admin') { ?>
-                                    <a class="nav-link" href="/profile">ข้อมูลผู้สร้างกิจกรรม</a>
-                                    <!-- <a class="nav-link" href="/admin">กิจกรรมของคุณ</a> -->
-                                <?php } ?>
                                 <a class="nav-link" href="/logout">ออกจากระบบ</a>
                             </ul>
                         </div>
