@@ -9,32 +9,19 @@ if (!isset($_POST['adminid'])) {
     $detialAtivity = $_POST['detialAt'];
     $dateAtivity = $_POST['dateAt'];
     $memberAtivity = $_POST['memberAt'];
-    $result = create_activity($adminActivity, $nameActivity, $detialAtivity, $dateAtivity, $memberAtivity);
+    $uploadDir = 'uploads/';
+    $fileExtension =pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
 
-    // $id = 
-    $resultid = getStudentById($_SESSION['student_id']);
-    // $res = getactivitybyid($id);
-    if ($result) {
-        echo "<script>alert('สร้างกิจกรรมสำเร็จ');</script>";
-        // renderView('admin_get', ['stdid' => $resultid]);
-        header('Location: /admin');
+    
+
+    $uploadFile = $uploadDir . uniqid() . '.' . $fileExtension;
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
+        if (create_activity($adminActivity, $nameActivity, $detialAtivity, $dateAtivity, $memberAtivity,$uploadFile)) {
+            header('Location: /activity');
+        } else {
+            echo "Error creating user";
+        }
     } else {
-        echo "<script>alert('คุณเคยสร้างกิจกรรมนี้แล้ว');</script>";
-        // renderView('addAdmin_get');
-        header('Location: /addAdmin');
-        exit(); 
+        echo "Error uploading file.";
     }
 }
-
-?>
-
-
-
-
-
-
-
-
-
-
-

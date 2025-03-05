@@ -16,7 +16,7 @@ if (!isset($_SESSION['student_id'])) {
                 <table border="1" class="table">
                     <tr>
                         <th>ชื่อ</th>
-                        <td><?= $data['result']['first_name'] ?></td>
+                        <td><?= $data['result']['firstname'] ?></td>
                     </tr>
                     <tr>
                         <th>นามสกุล</th>

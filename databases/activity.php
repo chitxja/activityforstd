@@ -51,7 +51,7 @@ function getsummember(): array
                 a.title, 
                 COUNT(j.join_activity_id) AS total_join 
             FROM activity AS a
-            LEFT JOIN join_activity AS j ON a.activity_id = j.activity_id
+            LEFT JOIN join_activity AS j ON a.activity_id = j.acid
             GROUP BY a.activity_id';
 
     $stmt = $conn->prepare($sql);

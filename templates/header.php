@@ -3,7 +3,7 @@ if (isset($_SESSION['student_id'])) {
     $resultid = getStudentById($_SESSION['student_id']);
 
     if ($resultid) {
-        $n = htmlspecialchars($resultid['first_name']);
+        $n = htmlspecialchars($resultid['firstname']);
         $ln = htmlspecialchars($resultid['lastname']);
         $image = !empty($resultid['image']) ? htmlspecialchars($resultid['image']) : 'default-profile.png';
     }

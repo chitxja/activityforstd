@@ -47,7 +47,7 @@ function jointoActivity(int $stdid, int $activityid): bool
     $conn = getConnection();
     $joinactivity_Date = date("Y-m-d");
 
-    $sql = "SELECT * FROM join_activity WHERE user_id = ? AND activity_id = ?";
+    $sql = "SELECT * FROM join_activity WHERE uid = ? AND acid = ?";
     $stmt = $conn->prepare($sql);
 
     if (!$stmt) {
@@ -63,7 +63,7 @@ function jointoActivity(int $stdid, int $activityid): bool
     if ($result->num_rows > 0) {
         return false;
     } else {
-        $insertQuery = "INSERT INTO join_activity (user_id, activity_id, join_activity_date) VALUES (?, ?, ?)";
+        $insertQuery = "INSERT INTO join_activity (uid, acid, join_activity_date) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($insertQuery);
         if (!$stmt) {
             die("SQL Error: " . $conn->error);
@@ -77,7 +77,7 @@ function jointoActivity(int $stdid, int $activityid): bool
         }
     }
 }
-function create_activity(int $adminid, string $nameActivity, string $detailActivity, string $dateActivity, string $memberActivity): bool
+function create_activity(int $adminid, string $nameActivity, string $detailActivity, string $dateActivity, string $memberActivity , string $image): bool
 {
     $conn = getConnection();
     $sql = 'SELECT * FROM activity WHERE title = ?';
@@ -91,33 +91,32 @@ function create_activity(int $adminid, string $nameActivity, string $detailActiv
     if ($result->num_rows > 0) {
         return false;
     } else {
-        $insertQuery = "INSERT INTO activity (uid, image, title, description, activity_date, location, time, enrollment, member, status) 
+        $insertQuery = "INSERT INTO activity (uid, title, description, activity_date, location,image, time, enrollment, member, status) 
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = $conn->prepare($insertQuery);
         if (!$stmt) {
             die("SQL Error: " . $conn->error);
         }
-        $image = '';
         $location = '';
         $time = '';
         $enrollment = 'รับทุกคณะ';
         $status = 'เปิดรับ';
 
-        $stmt->bind_param("isssssssss", $adminid, $image, $nameActivity, $detailActivity, $dateActivity, $location, $time, $enrollment, $memberActivity, $status);
+        $stmt->bind_param("isssssssss", $adminid, $nameActivity, $detailActivity, $dateActivity, $location,$image, $time, $enrollment, $memberActivity, $status);
 
         return $stmt->execute();
     }
 }
-function editActivity(int $actvity_id, string $title, string $desciption, string $date, string $member): bool
+function editActivity(int $actvity_id, string $title, string $desciption, string $date, string $member, string $image): bool
 {
     $conn = getConnection();
-    $insertQuery = "UPDATE activity set title = ? , description = ? , activity_date = ? , member = ? WHERE activity_id = ?";
+    $insertQuery = "UPDATE activity set title = ? , description = ? , activity_date = ?, image = ? , member = ? WHERE activity_id = ?";
     $stmt = $conn->prepare($insertQuery);
     if (!$stmt) {
         die("SQL Error: " . $conn->error);
     }
-    $stmt->bind_param("ssssi", $title, $desciption, $date, $member, $actvity_id);
+    $stmt->bind_param("sssssi", $title, $desciption, $date , $image, $member, $actvity_id);
     try {
         if ($stmt->execute()) {
             return true;

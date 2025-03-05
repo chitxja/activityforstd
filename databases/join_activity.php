@@ -20,8 +20,8 @@ function getjoinactivity(int $studentId): mysqli_result|bool
                 u.user_id
             FROM
                 activity a
-            INNER JOIN join_activity j ON a.activity_id = j.activity_id
-            INNER JOIN userstd u ON j.user_id = u.user_id
+            INNER JOIN join_activity j ON a.activity_id = j.acid
+            INNER JOIN userstd u ON j.uid = u.user_id
             WHERE u.user_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $studentId);
@@ -33,17 +33,17 @@ function getjoinactivitybyactivityid(int $activityId): mysqli_result|bool
 {
     $conn = getConnection();
     $sql = "SELECT
-                c.activity_id,
-                c.uid,
-                c.title,
-                e.join_activity_id,
-                e.join_activity_date,
+                a.activity_id,
+                a.uid,
+                a.title,
+                j.join_activity_id,
+                j.join_activity_date,
                 s.user_id
             FROM
-                activity c
-            INNER JOIN userstd s ON e.user_id = s.user_id
-            INNER JOIN join_activity e ON c.activity_id = e.activity_id
-            WHERE e.activity_id = ?";
+                activity a
+            INNER JOIN userstd s ON j.uid = s.user_id
+            INNER JOIN join_activity j ON a.activity_id = j.acid
+            WHERE j.acid = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $activityId);
     $stmt->execute();

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 if (!isset($_POST['activity_id'])) {
     header('Location: /activity');
@@ -8,13 +9,21 @@ if (!isset($_POST['activity_id'])) {
     $detialAtivity = $_POST['detialAt'];
     $dateAtivity = $_POST['dateAt'];
     $memberAtivity = $_POST['memberAt'];
-    $result = editActivity($activity_id, $nameActivity, $detialAtivity, $dateAtivity, $memberAtivity);
-    if ($result) {
-        echo "<script>alert('แก้ไขกิจกรรมสำเร็จ');</script>";
-        header('Location: /admin');
+    $uploadDir = 'uploads/';
+    if (!isset($_FILES['image']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK) {
+        die("Error: No file uploaded or there was an upload error.");
+    }
+    $fileExtension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+
+    
+    $uploadFile = $uploadDir . uniqid() . '.' . $fileExtension;
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
+        if (editActivity($activity_id, $nameActivity, $detialAtivity, $dateAtivity, $memberAtivity, $uploadFile)) {
+            header('Location: /admin');
+        } else {
+            echo "Error creating user";
+        }
     } else {
-        echo "<script>alert('แก้ไขกิจกรรมไม่สำเร็จ');</script>";
-        header('Location: /activity');
-        exit();
+        echo "Error uploading file.";
     }
 }

@@ -7,8 +7,6 @@ if ($result) {
     $_SESSION['timestamp'] = $unix_timestamp;
     $_SESSION['student_id'] = $result['user_id'];
     $activity = getActivity();
-    // $id = $result['role'];
-    // $_SESSION['user'] = $result['role'];
     $sum = getsummember();
     $getid = getStudentById($_SESSION['student_id']);
     $activity = getAdminCreateActivitybyid($_SESSION['student_id']);

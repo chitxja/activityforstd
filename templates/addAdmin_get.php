@@ -1,18 +1,18 @@
 <div class="container mt-4 p-4">
     <form action="addAdmin_insert" method="POST" enctype="multipart/form-data">
         <div class="row justify-content-center">
-            <div class="col-md-4 d-flex justify-content-center align-items-center mb-4 mb-md-0">
-                <div class="border d-flex justify-content-center align-items-center" style="width: 100%; max-width: 350px; height: 350px; position: relative;">
-                    <img id="previewImage" src="default-image.jpg" alt="Preview" style="width: 100%; height: 100%; object-fit: cover; display: none;">
-                    <button type="button" class="btn btn-outline-primary position-absolute" style="font-size: 68px; width: 100%; height: 100%;" onclick="document.getElementById('fileInput').click();">
-                        +
-                    </button>
-                    <input type="file" name="file" id="fileInput" style="display: none;" accept="image/*" onchange="previewFile()">
-                </div>
-            </div>
+            <!-- <div class="col-md-4 d-flex justify-content-center align-items-center mb-4 mb-md-0"> -->
+                <!-- <div class="border d-flex justify-content-center align-items-center" style="width: 100%; max-width: 350px; height: 350px; position: relative;"> -->
+                    <!-- <img id="previewImage" src="default-image.jpg" alt="Preview" style="width: 100%; height: 100%; object-fit: cover; display: none;"> -->
+                    <!-- <button type="button" class="btn btn-outline-primary position-absolute" style="font-size: 68px; width: 100%; height: 100%;" onclick="document.getElementById('fileInput').click();"> -->
+                        <!-- + -->
+                    <!-- </button> -->
+                <!-- </div> -->
+            <!-- </div> -->
             <div class="col-md-6">
                 <div class="card shadow">
                     <div class="card-body">
+                        <input type="file" id="image" name="image" accept="image/*"  >
                         <h1><?php $_SESSION['error'] = 'เคยสร้างกิจกรมนี้แล้ว';
                                     unset($_SESSION['error']);
                         ?></h1>
