@@ -6,14 +6,13 @@ if (!isset($_SESSION['student_id'])) {
 <section class="container">
     <h2 class="mt-3 mb-3">ข้อมูลนักเรียน</h2>
     <div class="row ">
+    <form action="editprofile" method="get">
+
         <div class="border rounded-4 row d-flex justify-content-center container ">
             <div class="col-3 mt-3 mb-3 me-3">
-                <form action="">
                 <div class="d-flex justify-content-center ">
                     <img class="rounded w-100"  src="<?= $data['result']['image'] ?>" alt="profile">
                 </div>
-                <input type="file" name="image" id="image" class="form-control mt-3">
-                </form>
             </div>
             <div class="col-7 mt-3 mb-3 ">
                 <table border="1" class="table">
@@ -35,6 +34,14 @@ if (!isset($_SESSION['student_id'])) {
                     </tr>
                 </table>
             </div>
+            <div class=" d-flex justify-content-end mb-2">
+            <input type="hidden" name="id" value="<?= $data['result']['user_id'] ?>">
+            <input type="submit" class="btn btn-primary" value="แก้ไขข้อมูล">
+            </div>
+    
+
+            </form>
+
         </div>
 
         <h2 class="mt-3 mb-3">กิจกรรมที่ลงทะเบียนแล้ว</h2>

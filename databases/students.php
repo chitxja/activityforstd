@@ -77,7 +77,7 @@ function jointoActivity(int $stdid, int $activityid): bool
         }
     }
 }
-function create_activity(int $adminid, string $nameActivity, string $detailActivity, string $dateActivity, string $memberActivity , string $image): bool
+function create_activity(int $adminid, string $nameActivity, string $detailActivity, string $dateActivity, string $memberActivity, string $image): bool
 {
     $conn = getConnection();
     $sql = 'SELECT * FROM activity WHERE title = ?';
@@ -103,7 +103,7 @@ function create_activity(int $adminid, string $nameActivity, string $detailActiv
         $enrollment = 'รับทุกคณะ';
         $status = 'เปิดรับ';
 
-        $stmt->bind_param("isssssssss", $adminid, $nameActivity, $detailActivity, $dateActivity, $location,$image, $time, $enrollment, $memberActivity, $status);
+        $stmt->bind_param("isssssssss", $adminid, $nameActivity, $detailActivity, $dateActivity, $location, $image, $time, $enrollment, $memberActivity, $status);
 
         return $stmt->execute();
     }
@@ -116,7 +116,27 @@ function editActivity(int $actvity_id, string $title, string $desciption, string
     if (!$stmt) {
         die("SQL Error: " . $conn->error);
     }
-    $stmt->bind_param("sssssi", $title, $desciption, $date , $image, $member, $actvity_id);
+    $stmt->bind_param("sssssi", $title, $desciption, $date, $image, $member, $actvity_id);
+    try {
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (Exception $e) {
+        return false;
+    }
+    return false;
+}
+function editprofile(int $id, string $fn, string $ln, string $email , string  $uploadFile): bool
+{
+    $conn = getConnection();
+    $insertQuery = "UPDATE userstd set firstname = ? , lastname = ? , email = ? , image = ?  WHERE user_id = ?";
+    $stmt = $conn->prepare($insertQuery);
+    if (!$stmt) {
+        die("SQL Error: " . $conn->error);
+    }
+    $stmt->bind_param("ssssi", $fn, $ln, $email, $uploadFile, $id);
     try {
         if ($stmt->execute()) {
             return true;

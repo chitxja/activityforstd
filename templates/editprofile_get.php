@@ -1,8 +1,8 @@
-<?php 
-$act = $data['activity'];
-$actid = $act['activity_id'];
+<?php
+$act = $data['getstd'];
+$actid = $act['user_id'];
 ?>
-<form action="editAdmin_insert" method="POST" enctype="multipart/form-data">
+<form action="editprofile" method="POST" enctype="multipart/form-data" >
   <div class="row justify-content-center">
             <!-- ส่วนซ้าย: รูปบวก -->
             <div class="col-md-4 d-flex justify-content-center align-items-center mb-4 mb-md-0">
@@ -10,7 +10,6 @@ $actid = $act['activity_id'];
                     <!-- <button class="btn btn-outline-primary position-absolute" style="font-size: 68px; width: 100%; height: 100%;" onclick="document.getElementById('fileInput').click();"> -->
                         <!-- + -->
                     <!-- </button> -->
-
                     <?php echo "<img src='" . $act['image'] . "' height=250 alt=''>";?>
                     <input type="hidden" name="oldimage" value="<?= $act['image'] ?>">
                     <input type="file" id="image" name="image" accept="image/*"  >
@@ -21,26 +20,26 @@ $actid = $act['activity_id'];
             <div class="col-md-6">
                 <div class="card shadow">
                     <div class="card-body">
-                        <h4 class="card-title text-center mb-4">แก้ไขกิจกรรม</h4>
+                        <h4 class="card-title text-center mb-4">แก้ไขข้อมูล</h4>
                             <div class="mb-3">
-                                <label for="nameAt" class="form-label">ชื่อกิจกรรม</label>
-                                <input type="text" class="form-control" name="nameAt" id="nameAt"  value="<?=  $act['title']?>" required>
+                                <label for="name" class="form-label">ชื่อ</label>
+                                <input type="text" class="form-control" name="name"   value="<?=  $act['firstname']?>" required>
                             </div>
                             <div class="mb-3">
-                                <label for="detialAt" class="form-label">รายละเอียดกิจกรรม</label>
-                                <input type="text" class="form-control" name="detialAt" id="detialAt" value="<?=  $act['description']?>" required>
+                                <label for="ln" class="form-label">นามสกุล</label>
+                                <input type="text" class="form-control" name="lastname" value="<?=  $act['lastname']?>" required>
                             </div>
                             <div class="mb-3">
-                                <label for="dateAt" class="form-label">วัน-เวลาเริ่มกิจกรรม</label>
-                                <input type="date" class="form-control" name="dateAt" id="dateAt" value="<?=  $act['activity_date']?>" required>
+                                <label for="email" class="form-label">อีเมล</label>
+                                <input type="text" class="form-control" name="email" value="<?=  $act['email']?>" required>
                             </div>
                             <div class="mb-3">
-                                <label for="memberAt" class="form-label">จำนวนสมาชิก</label>
-                                <input type="text" class="form-control" name="memberAt" id="memberAt" value="<?=  $act['member']?>" required>
+                                <label for="role" class="form-label">สถานะ</label>
+                                <input type="text" class="form-control" name="role" value="<?=  $act['role']?>" required>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <button type="submit" name="activity_id" value="<?=  $actid?>" class="btn btn-primary w-30">แก้ไขกิจกรรม</button>
-                                <a href="/admin" class="btn btn-danger w-30">ยกเลิก</a>
+                                <button type="submit" name="stdid" value="<?=  $actid?>" class="btn btn-primary w-30">แก้ไขข้อมูล</button>
+                                <a href="/profile" class="btn btn-danger w-30">ยกเลิก</a>
                             </div>
                         </div>
                     </div>
