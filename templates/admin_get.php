@@ -48,6 +48,10 @@
                             <td colspan="6"><?= htmlspecialchars($a['title'] ?? 'ไม่มีชื่อกิจกรรม') ?></td>
                             <td colspan="3"><?= htmlspecialchars((string) $total_join) ?> / <?= $a['member'] ?></td>
                             <td colspan="3"  class="d-flex ">
+                            <form action="detailactivity" method="get">
+                                    <input type="hidden" name="activity_id" value="<?= $a['activity_id'] ?>">
+                                    <input type="submit" class="btn btn-info me-2" value="รายละเอียด">
+                                </form>
                                 <form action="editActivity" method="get">
                                     <input type="hidden" name="activity_id" value="<?= $a['activity_id'] ?>">
                                     <input type="submit" class="btn btn-warning me-2" value="แก้ไข">
