@@ -33,7 +33,7 @@ if (isset($_SESSION['student_id'])) {
                             </li>
                             <li class="nav-item d-flex  align-items-center">
                                 <a class="nav-link" href="/admin">
-                                    <span>กิจกรรมของคุณ</span>
+                                    <span>กิจกรรมของคุณสร้าง</span>
                                 </a>
                             </li>
                             <li class="nav-item d-flex  align-items-center">
@@ -48,6 +48,7 @@ if (isset($_SESSION['student_id'])) {
                             </a>
                             <ul class="dropdown-menu">
                                     <a class="nav-link" href="/profile">ข้อมูลนักเรียน</a>
+                                    <a class="nav-link" href="/myjoinactivity">กิจกรรมของคุณ</a>
                                 <a class="nav-link" href="/logout">ออกจากระบบ</a>
                             </ul>
                         </div>
@@ -59,6 +60,9 @@ if (isset($_SESSION['student_id'])) {
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/login">เข้าสู่ระบบ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/register">สมัครสมาชิก</a>
                         </li>
                     <?php
                 }

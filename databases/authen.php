@@ -22,6 +22,21 @@ function login(String $username, String $password): array|bool
         return false;
     }
 }
+function register(string $id , String $fn, String $ln, String $email, String $pwd): bool
+{
+    $conn = getConnection();
+    $sql = 'insert into userstd (std_id, firstname, lastname, email, password) values (?, ?, ?, ?, ?)';
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sssss",$id, $fn, $ln, $email, password_hash($pwd, PASSWORD_DEFAULT));
+    $stmt->execute();
+    if($stmt->affected_rows > 0)
+    {
+        return true;
+    }else
+    {
+        return false;
+    }
+}
 
 
 

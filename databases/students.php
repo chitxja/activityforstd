@@ -148,3 +148,25 @@ function editprofile(int $id, string $fn, string $ln, string $email , string  $u
     }
     return false;
 }
+function dropjoinactivitystd(int $stdid, int $activityid): bool
+{
+    $conn = getConnection();
+
+    $sql = "DELETE FROM join_activity WHERE  uid = ? AND acid = ?";
+    $stmt = $conn->prepare($sql);
+    if (!$stmt) {
+        die(" SQL Error: " . $conn->error);
+    }else{
+        $stmt->bind_param("ii", $stdid, $activityid);
+        try {
+            $stmt->execute();
+            if ($stmt->affected_rows > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+}

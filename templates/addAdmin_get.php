@@ -12,6 +12,7 @@
             <div class="col-md-6">
                 <div class="card shadow">
                     <div class="card-body">
+                        <input type="hidden" name="oldimage"  >
                         <input type="file" id="image" name="image" accept="image/*"  >
                         <h1><?php $_SESSION['error'] = 'เคยสร้างกิจกรมนี้แล้ว';
                                     unset($_SESSION['error']);

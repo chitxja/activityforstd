@@ -13,11 +13,12 @@
             </div>
         </div>
 
-        <table class="table">
+        <table class="table border mt-2">
             <thead>
                 <tr>
-                    <th>ชื่อกิจกรรม</th>
-                    <th>จำนวนนิสิตที่ลงทะเบียน</th>
+                    <th colspan="6">ชื่อกิจกรรม</th>
+                    <th colspan="3">จำนวนนิสิตที่ลงทะเบียน</th>
+                    <th colspan="3">จัดการข้อมูล</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,26 +45,32 @@
                         }
                     ?>
                         <tr>
-                            <td><?= htmlspecialchars($a['title'] ?? 'ไม่มีชื่อกิจกรรม') ?></td>
-                            <td><?= htmlspecialchars((string) $total_join) ?> / <?= $a['member'] ?></td>
-                            <td>
+                            <td colspan="6"><?= htmlspecialchars($a['title'] ?? 'ไม่มีชื่อกิจกรรม') ?></td>
+                            <td colspan="3"><?= htmlspecialchars((string) $total_join) ?> / <?= $a['member'] ?></td>
+                            <td colspan="3"  class="d-flex ">
                                 <form action="editActivity" method="get">
-                                <input type="hidden" name="activity_id" value="<?= $a['activity_id'] ?>">
-                                <input type="submit" class="btn btn-warning" value="แก้ไข">
+                                    <input type="hidden" name="activity_id" value="<?= $a['activity_id'] ?>">
+                                    <input type="submit" class="btn btn-warning me-2" value="แก้ไข">
                                 </form>
                                 <form action="deActivity" method="get">
                                     <input type="hidden" name="activity_id" value="<?= $a['activity_id'] ?>">
-                                    <input type="submit" class="btn btn-danger" value="ลบ">
+                                    <input type="submit" class="btn btn-danger" value="ลบ" onclick="confirmdelactivity();">
                                 </form>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="2" class="text-center">ไม่มีข้อมูลกิจกรรม</td>
+                        <td colspan="12" class="text-center">ไม่มีข้อมูลกิจกรรม</td>
                     </tr>
                 <?php endif; ?>
             </tbody>
         </table>
     </div>
 </div>
+<script>
+    function confirmdelactivity() {
+        alert("คุณต้องการลบกิจกรรมใช่หรือไม่");
+    }
+</script>    
+
