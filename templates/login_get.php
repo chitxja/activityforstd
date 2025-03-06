@@ -10,7 +10,6 @@
         <input type="submit"class="btn btn-primary btn-lg mt-3 w-25 " value="เข้าสู่ระบบ">
         </div>
     </form>
-    <?php echo $_SESSION['message']?>
     </div>
     
 

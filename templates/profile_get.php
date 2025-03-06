@@ -8,9 +8,12 @@ if (!isset($_SESSION['student_id'])) {
     <div class="row ">
         <div class="border rounded-4 row d-flex justify-content-center container ">
             <div class="col-3 mt-3 mb-3 me-3">
+                <form action="">
                 <div class="d-flex justify-content-center ">
-                    <img class="rounded w-100"  src="<?= $data['result']['image'] ?>" alt="">
+                    <img class="rounded w-100"  src="<?= $data['result']['image'] ?>" alt="profile">
                 </div>
+                <input type="file" name="image" id="image" class="form-control mt-3">
+                </form>
             </div>
             <div class="col-7 mt-3 mb-3 ">
                 <table border="1" class="table">
