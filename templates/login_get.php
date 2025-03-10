@@ -7,7 +7,7 @@
         <input type="email" id="email" name="email" class="form-control form-control-lg">
         <label for="password" class="form-label mt-2 d-flex justify-content-start">รหัสผ่าน:</label>
         <input type="password" id="password" name="password" class="form-control form-control-lg">
-        <input type="submit"class="btn btn-primary btn-lg mt-3 w-25 " value="เข้าสู่ระบบ">
+        <input type="submit"class="btn btn-primary btn-lg mt-3  " width="auto" value="เข้าสู่ระบบ">
         <p>
             <a href="/register"><strong>register</strong></a>
         </p>    

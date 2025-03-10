@@ -17,6 +17,8 @@ function normalizeUri(string $uri): string
     $uri = strtolower(trim($uri, '/'));
     // Check if uri is empty and return index.php
     return $uri == INDEX_URI ? INDEX_ROUNTE : $uri;
+    // echo "Normalized URI: " . normalizeUri($_SERVER['REQUEST_URI']) . "<br>";
+
 }
 
 // Page not found function
@@ -49,3 +51,6 @@ function dispatch(string $uri, string $method): void
         notFound();
     }
 }
+
+
+

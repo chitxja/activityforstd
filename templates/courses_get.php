@@ -1,17 +1,36 @@
-<div class="text-center">
-    <h1>รายการกิจกรรม</h1>
-</div>
 <div class="d-flex justify-content-center">
+    <h1>รายการกิจกรรม</h1>
+    
+</div>
+<form class="d-flex align-items-center container w-25" method="get">
+        <input class="form-control me-2 " type="text" name="search" placeholder="Search" value="<?= isset($_GET['search']) ? $_GET['search'] : '' ?>">
+        <button class="btn btn-primary" type="button">Search</button>
+    </form>
+<div class="d-flex justify-content-center">
+
     <div class="row container">
         <?php
-        foreach ($data['activity'] as $a) {
+        $search = isset($_GET['search']) ? trim($_GET['search']) : '';
 
+        foreach ($data['activity'] as $a) {
             if ($a['status'] === "ปิดรับแล้ว") {
-                continue; 
+                continue;
+            }
+
+            // ถ้ามีการค้นหา ให้กรองเฉพาะกิจกรรมที่เกี่ยวข้อง
+            if (!empty($search)) {
+                if (
+                    stripos($a['title'], $search) === false && // ค้นหาชื่อกิจกรรม
+                    stripos($a['location'], $search) === false // ค้นหาสถานที่
+                ) {
+                    continue;
+                }
             }
 
             $date = new DateTime($a['activity_date']);
-            $formatted_date = $date->format('d-m-Y'); ?>
+            $formatted_date = $date->format('d-m-Y');
+        ?>
+            
             <section class="col-4 mb-1 ">
                 <div class="border  rounded-4 overflow-hidden ">
                     <section>
@@ -42,8 +61,8 @@
     </div>
 </div>
 </div>
-
-
-
-
-
+<script>
+document.querySelector('input[name="search"]').addEventListener('input', function() {
+    this.form.submit();
+});
+</script>

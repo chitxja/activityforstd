@@ -1,3 +1,8 @@
+<?php
+if (isset($_SESSION['success'])) {
+    echo '<div class="alert alert-success">'.$_SESSION['success'].'</div>';
+    unset($_SESSION['success']);
+}?>
 <div class="container p-4">
     <div class="row justify-content-center">
         <div class="col-md-12">

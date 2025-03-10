@@ -7,6 +7,6 @@ if (!isset($_GET['activity_id'])) {
     $activity_id = (int)$_GET['activity_id'];
     $activity = getActivityById($activity_id);
 
-        renderView('editAdmin_get', ['activity' => $activity]);
+        renderView('editadmin_get', ['activity' => $activity]);
 }
 ?> 

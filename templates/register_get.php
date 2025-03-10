@@ -13,7 +13,7 @@
                 <input type="email" id="email" name="email" class="form-control form-control-lg">
                 <label for="password" class="form-label mt-2 d-flex justify-content-start">รหัสผ่าน:</label>
                 <input type="password" id="password" name="password" class="form-control form-control-lg">
-                <input type="submit" class="btn btn-primary btn-lg mt-3 w-25 " value="สมัครสมาชิก">
+                <input type="submit" class="btn btn-primary btn-lg mt-3 " width="auto"  value="สมัครสมาชิก">
                 <a href="/login">
                     <p><strong>Login</strong>
                     </p>
